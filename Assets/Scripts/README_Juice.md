@@ -33,7 +33,27 @@ Assets/Scripts/
               └─ RetryLevel()
 ```
 
-## Setup en el editor
+## Generación automática (recomendado)
+
+En Unity, menú superior:
+
+- **Tools ▸ Juice ▸ Build Demo Scene** → crea y abre `Assets/Scenes/JuiceDemo.unity`
+  con managers, EventSystem, Canvas y las 3 pantallas (Hub, Victoria, Derrota) +
+  un HUD con botones de prueba `WIN` / `FAIL` ya cableados. Todas las referencias
+  `[SerializeField]` quedan conectadas automáticamente.
+- **Tools ▸ Juice ▸ Build Base Prefabs** → genera `Assets/Prefabs/JuicyButton.prefab`
+  y `Assets/Prefabs/Managers.prefab`.
+
+Tras generar la escena solo queda (manual):
+1. **AudioManager** → arrastra `tone*.wav` (id `"tone"`) y `prueba.wav` (id `"prueba"`).
+2. **JuiceManager** → asigna el `Volume` de post-proceso (opcional).
+3. Pulsa **Play** y prueba el flujo Hub → WIN → pantalla de progreso → FAIL → derrota.
+
+> El builder vive en `Assets/Scripts/Editor/DemoSceneBuilder.cs` (solo editor).
+> Las escenas/prefabs se generan así porque escribir el YAML a mano es frágil;
+> este método cablea las referencias de forma garantizada.
+
+## Setup manual en el editor
 
 ### 1. GameObject `_Managers` (persistente)
 - `GameManager` → set `totalLevels = 9`, `startingLives = 3`.
