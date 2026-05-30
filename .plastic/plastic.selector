@@ -1,0 +1,4 @@
+repository "ExameParcial2/ExameParcial2@2964314@cloud"
+  path "/"
+    br "/main"
+    co "/main"
